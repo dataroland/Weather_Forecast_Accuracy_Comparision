@@ -2,8 +2,8 @@
 
 Embark on a meteorological journey with my Weather Forecast Comparison project, where I scrutinize the accuracy of three prominent weather forecasting websites for Budapest, Hungary.
 
-1. **OMSZ – Hungarian Meteorological Service**
-   - [OMSZ Website](https://met.hu)
+1. **HungaroMet – Hungarian Meteorological Service**
+   - [HungaroMet Website](https://met.hu)
    - A government-operated site providing the official weather forecast for Hungary.
 
 2. **Időkép**
