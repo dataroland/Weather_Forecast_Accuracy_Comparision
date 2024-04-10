@@ -9,9 +9,9 @@ import pytz
 from bs4 import BeautifulSoup as bs
 import requests
 
-IBM = pd.read_csv('/home/dataroland/data_source_course/IBM_weather/all_data/IBM_all_data.csv', delimiter=',')
+IBM = pd.read_csv('file_path', delimiter=',')
 # read the data
-OMSZ = pd.read_csv('/home/dataroland/data_source_course/OMSZ/all_data/OMSZ_all_data.csv', delimiter=',')
+OMSZ = pd.read_csv('file_path', delimiter=',')
 
 IBM = IBM[['actual_date', 'actual_hour', 'version', 'forecast_date', 'forecast_hour', 'temp', 'precip1Hour', 'wind_speed_mph', 'condition']]
 
@@ -127,9 +127,9 @@ formatted_yesterday_date = yesterday_date.strftime('%Y-%m-%d')
 
 IBM_daily_analyzed_summary = IBM_daily_analyzed_summary[IBM_daily_analyzed_summary.forecast_date == formatted_yesterday_date]
 
-IBM_daily_analyzed_summary.to_csv('/home/dataroland/data_source_course/IBM_weather/weather_summary.csv', mode='a', index=False, header=False)
+IBM_daily_analyzed_summary.to_csv('file_path', mode='a', index=False, header=False)
 
-dictionary_path1 = '/home/dataroland/data_source_course/IBM_weather/IBM_upload/'
+dictionary_path1 = 'file_path'
 file_path1 = dictionary_path1 + formatted_yesterday_date
 IBM_daily_analyzed_summary.to_csv(file_path1, index=False, header=False)
 
