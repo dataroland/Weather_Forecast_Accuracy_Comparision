@@ -1,6 +1,6 @@
-# Weather Forecast Comparison Project
+# Weather Forecast Accuracy Project
 
-Embark on a meteorological journey with my Weather Forecast Comparison project, where I scrutinize the accuracy of three prominent weather forecasting websites for Budapest, Hungary.
+Embark on a meteorological journey with my Weather Forecast Accuracy project, where I scrutinize the accuracy of three prominent weather forecasting websites for Budapest, Hungary.
 
 ## Weather Forecast Websites
 
