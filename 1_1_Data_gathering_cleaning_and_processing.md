@@ -4,7 +4,7 @@
 
 I have collected data from 3 different weather forecast providers (OMSZ, Weather Underground and Idokep). The type of data, the frequency of the downloads and other details can be found in the picture below: 
 
-![Weather_summary](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/f0fd6f1a-17ef-4db2-bc90-e424063d9abb)
+![Weather_summary](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/22e4f32a-4728-446a-95a8-d640374887f2)
 
 ## 2) Data Cleaning:
 
