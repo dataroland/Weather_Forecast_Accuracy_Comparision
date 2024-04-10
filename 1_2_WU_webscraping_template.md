@@ -19,7 +19,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-service = Service(executable_path="/home/dataroland/data_source_course/OMSZ/chromedriver")
+service = Service(executable_path="file_path")
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
@@ -87,12 +87,12 @@ for i in range(0,360):
 
 forecast_data_IBM_full_df = pd.DataFrame(forecast_data_IBM_full)
 
-dictionary_path1 = '/home/dataroland/data_source_course/IBM_weather/IBM_forecast/'
+dictionary_path1 = 'file_path'
 date_hour_format = converted_datetime.strftime("%Y-%m-%d_%H")
 file_path1 = dictionary_path1 + date_hour_format
 forecast_data_IBM_full_df.to_csv(file_path1, index=False, header=False)
 
-file_path2 = '/home/dataroland/data_source_course/IBM_weather/all_data/IBM_all_data.csv'
+file_path2 = 'file_path'
 forecast_data_IBM_full_df.to_csv(file_path2, mode='a', index=False, header=False)
 
 
@@ -116,7 +116,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-service = Service(executable_path="/home/dataroland/data_source_course/OMSZ/chromedriver")
+service = Service(executable_path="file_path")
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
@@ -180,12 +180,12 @@ for i in range(0,24):
 
 actual_data_IBM_full_df = pd.DataFrame(actual_data_IBM_full)
 
-dictionary_path1 = '/home/dataroland/data_source_course/IBM_weather/IBM_actual/'
+dictionary_path1 = 'file_path'
 date_hour_format = converted_datetime.strftime("%Y-%m-%d_%H")
 file_path1 = dictionary_path1 + date_hour_format
 actual_data_IBM_full_df.to_csv(file_path1, index=False, header=False)
 
-file_path2 = '/home/dataroland/data_source_course/IBM_weather/all_data/IBM_all_data.csv'
+file_path2 = 'file_path'
 actual_data_IBM_full_df.to_csv(file_path2, mode='a', index=False, header=False)
 
 ```
