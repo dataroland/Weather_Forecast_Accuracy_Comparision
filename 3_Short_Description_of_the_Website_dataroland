@@ -1,0 +1,36 @@
+# Short Description of the Website - dataroland.com
+
+## Website Focus:
+
+[Dataroland.com](https://dataroland.com) is dedicated to my hobby projects, prominently featuring the Train Delay Project and Weather Forecast Accuracy Project. With a commitment to user engagement and data-driven insights, the website showcases the versatile capabilities of WordPress, Elementor, advanced charting libraries. Regularly updated data ensures the accuracy and relevance of information presented on dataroland.com.
+
+## Technical Details:
+
+- **Domain:** [dataroland.com](https://dataroland.com)
+- **Host:** [hostinger.com](https://www.hostinger.com/)
+- **CMS:** WordPress serves as the content management system, boasting plugin architecture and a template system for flexible customization. The site adopts the Colobri WP appearance and integrates Elementor—a drag-and-drop page builder providing a visual editor for efficient and dynamic website creation.
+
+## Website Menu:
+
+- Home
+- Hobby Projects
+  - Train Delay Project
+  - Weather Forecast Accuracy Project
+    - Weather Project Summary
+    - High Temperature Accuracy
+      - 15+ Days Forecast of Idokep
+      - Positive Errors of Idokep
+    - Low Temperature Accuracy
+    - Rain Accuracy
+    - No Rain Accuracy
+- About Me
+
+## Development and Visualization:
+
+- **Development:** HTML and JavaScript codes are predominantly developed by ChatGPT4.0, ensuring a responsive and interactive user experience.
+- **Charting Libraries:** The site leverages chart.js for bar and line charts enhancing data visualization capabilities.
+
+## Data Management:
+
+- **Data Source:** Primarily sourced from CSV files on the hostinger server, with regular updates being essential to maintain accuracy.
+- **CSV Parsing:** Papa Parse, the fastest in-browser CSV parser for JavaScript, is employed for efficient data handling.
