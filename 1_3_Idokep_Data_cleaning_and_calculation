@@ -1,0 +1,138 @@
+```python
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import datetime
+import pytz
+from bs4 import BeautifulSoup as bs
+import requests
+
+#Read the data:
+daily_min_max = pd.read_csv('file_path', delimiter=',')
+rain_actual = pd.read_csv('file_path', delimiter=',')
+
+rain_actual['rain_mm'] = pd.to_numeric(rain_actual['rain_mm'], errors='coerce')
+rain_actual['forecast_date'] = pd.to_datetime(rain_actual['forecast_date'])
+rain_actual = rain_actual[rain_actual['version'] == 't-0'][['forecast_date', 'rain_mm']].groupby('forecast_date').sum()
+
+condition_mapping = pd.read_csv('file_path', delimiter=',')
+daily_condition = daily_min_max[daily_min_max['version'] == 't-0'][['forecast_date', 'condition']].reset_index(drop=True)
+
+merged_condition = daily_condition.merge(condition_mapping, how = 'left', left_on = 'condition', right_on = 'condition_a')
+merged_condition = merged_condition[['forecast_date', 'condition_code']].groupby('forecast_date').mean().reset_index()
+
+merged_condition['forecast_date'] = pd.to_datetime(merged_condition['forecast_date'])
+
+
+
+# Assuming daily_min_max is your DataFrame
+daily_min_max['forecast_date'] = pd.to_datetime(daily_min_max['forecast_date'])
+daily_min_max['temperature'] = pd.to_numeric(daily_min_max['temperature'], errors='coerce')
+
+# Filtering for version 't-0' first
+t0_data = daily_min_max[daily_min_max['version'] == 't-0']
+
+# Grouping and aggregating for minimum temperature
+daily_min = t0_data.groupby('forecast_date')['temperature'].min().reset_index()
+daily_min.rename(columns={'temperature': 'temperature_min'}, inplace=True)
+
+# Grouping and aggregating for maximum temperature
+daily_max = t0_data.groupby('forecast_date')['temperature'].max().reset_index()
+daily_max.rename(columns={'temperature': 'temperature_max'}, inplace=True)
+
+idokep_napi_actual = daily_max.merge(daily_min, how = 'left', left_on = 'forecast_date', right_on = 'forecast_date')
+
+rain_actual = rain_actual.reset_index()
+idokep_napi_actual = idokep_napi_actual.merge(rain_actual, how = 'left', left_on = 'forecast_date', right_on = 'forecast_date')
+
+idokep_napi_actual = idokep_napi_actual.merge(merged_condition, how = 'left', left_on = 'forecast_date', right_on = 'forecast_date')
+
+idokep_napi_actual['version_new'] = 0
+idokep_napi_actual['condition'] = 'average'
+idokep_napi_actual['actual_hour'] = 0
+
+idokep_napi_actual = idokep_napi_actual[['forecast_date', 'actual_hour', 'version_new', 'condition', 'temperature_max', 'temperature_min', 'rain_mm', 'condition_code']]
+
+today_date = pd.Timestamp(pd.Timestamp.today().date())
+idokep_napi_actual = idokep_napi_actual[
+    (idokep_napi_actual['forecast_date'] > '2023-06-15') &
+    (idokep_napi_actual['forecast_date'] < today_date)
+]
+
+idokep_napi = pd.read_csv('file_path', delimiter=',')
+
+
+idokep_napi['forecast_date'] = pd.to_datetime(idokep_napi['forecast_date'])
+idokep_napi['actual_date'] = pd.to_datetime(idokep_napi['actual_date'])
+idokep_napi['forecast_day'] = pd.to_numeric(idokep_napi['forecast_day'], errors='coerce')
+idokep_napi['actual_day'] = pd.to_numeric(idokep_napi['actual_day'], errors='coerce')
+idokep_napi['actual_hour'] = pd.to_numeric(idokep_napi['actual_hour'], errors='coerce')
+idokep_napi['temperature_max'] = pd.to_numeric(idokep_napi['temperature_max'], errors='coerce')
+idokep_napi['rain_mm'] = pd.to_numeric(idokep_napi['rain_mm'], errors='coerce')
+today_date = pd.Timestamp(pd.Timestamp.today().date())
+idokep_napi = idokep_napi[
+    (idokep_napi['forecast_date'] > '2023-06-15') &
+    (idokep_napi['forecast_date'] < today_date)
+]
+
+time_difference_hours = (idokep_napi['forecast_date'] - idokep_napi['actual_date']).dt.total_seconds() / 3600 / 24
+calculated_value = time_difference_hours.round(0).astype(int)
+idokep_napi['version_new'] = calculated_value
+idokep_napi['version_new'] = np.where(
+    idokep_napi['version_new'] > 30,
+    1000,
+    calculated_value  
+)
+idokep_napi = idokep_napi[idokep_napi.version_new != 0]
+idokep_napi['version_new'] = pd.to_numeric(idokep_napi['version_new'], errors='coerce')
+
+idokep_napi = idokep_napi.merge(condition_mapping, how = 'left', left_on = 'condition', right_on = 'condition_a')
+
+idokep_napi = idokep_napi[['actual_date', 'forecast_date', 'actual_hour', 'version_new', 'condition', 'temperature_max', 'temperature_min', 'rain_mm', 'condition_code']]
+
+idokep_napi = pd.concat([idokep_napi, idokep_napi_actual], axis=0, ignore_index=True)
+
+idokep_napi = idokep_napi.sort_values(by=['forecast_date', 'actual_hour', 'version_new'], ascending=[True, True, True])
+
+def calculate_temp_diff(group):
+    # Calculate absolute temperature difference with version 0
+    group['temp_max_diff'] = group['temperature_max'] - group.loc[group['version_new'] == 0, 'temperature_max'].iloc[0]
+    group['temp_max_diff_abs'] = abs(group['temperature_max'] - group.loc[group['version_new'] == 0, 'temperature_max'].iloc[0])
+    group['actual_max_temp'] = group.loc[group['version_new'] == 0, 'temperature_max'].iloc[0]
+    group['temp_min_diff'] = group['temperature_min'] - group.loc[group['version_new'] == 0, 'temperature_min'].iloc[0]
+    group['temp_min_diff_abs'] = abs(group['temperature_min'] - group.loc[group['version_new'] == 0, 'temperature_min'].iloc[0])
+    group['actual_min_temp'] = group.loc[group['version_new'] == 0, 'temperature_min'].iloc[0]
+    group['rain_mm_diff'] = group['rain_mm'] - group.loc[group['version_new'] == 0, 'rain_mm'].iloc[0]
+    group['rain_mm_diff_abs'] = abs(group['rain_mm'] - group.loc[group['version_new'] == 0, 'rain_mm'].iloc[0])
+    group['actual_rain_mm'] = group.loc[group['version_new'] == 0, 'rain_mm'].iloc[0]
+    group['cond_diff'] = group['condition_code'] - group.loc[group['version_new'] == 0, 'condition_code'].iloc[0]
+    group['cond_diff_abs'] = abs(group['condition_code'] - group.loc[group['version_new'] == 0, 'condition_code'].iloc[0])
+    group['actual_cond'] = group.loc[group['version_new'] == 0, 'condition_code'].iloc[0]
+    return group
+
+# Apply the function to each group
+idokep_napi_analyzed = idokep_napi.groupby((idokep_napi['version_new'] == 0).cumsum()).apply(calculate_temp_diff)
+
+idokep_napi_analyzed= idokep_napi_analyzed[idokep_napi_analyzed.actual_hour != 8]
+
+idokep_napi_analyzed_summary = idokep_napi_analyzed[['forecast_date', 'version_new', 'temperature_max', 'temperature_min', 'rain_mm', 'temp_max_diff', 'temp_max_diff_abs', 'actual_max_temp', 'temp_min_diff', 'temp_min_diff_abs', 'actual_min_temp', 'rain_mm_diff', 'rain_mm_diff_abs', 'actual_rain_mm']]
+
+idokep_napi_analyzed_summary['provider'] = 'idokep'
+
+# Get today's date and time
+today_datetime = pd.Timestamp.now()
+
+# Subtract one day to get yesterday's date
+yesterday_date = today_datetime - pd.Timedelta(days=1)
+formatted_yesterday_date = yesterday_date.strftime('%Y-%m-%d')
+
+idokep_napi_analyzed_summary = idokep_napi_analyzed_summary[idokep_napi_analyzed_summary.forecast_date == formatted_yesterday_date]
+
+idokep_napi_analyzed_summary.to_csv('/home/dataroland/data_source_course/IBM_weather/weather_summary.csv', mode='a', index=False, header=False)
+
+dictionary_path1 = 'file_path'
+file_path1 = dictionary_path1 + formatted_yesterday_date
+idokep_napi_analyzed_summary.to_csv(file_path1, index=False, header=False)
+
+```
