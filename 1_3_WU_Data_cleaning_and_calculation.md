@@ -9,8 +9,8 @@ import pytz
 from bs4 import BeautifulSoup as bs
 import requests
 
-IBM = pd.read_csv('file_path', delimiter=',')
 # read the data
+IBM = pd.read_csv('file_path', delimiter=',')
 OMSZ = pd.read_csv('file_path', delimiter=',')
 
 IBM = IBM[['actual_date', 'actual_hour', 'version', 'forecast_date', 'forecast_hour', 'temp', 'precip1Hour', 'wind_speed_mph', 'condition']]
@@ -32,6 +32,7 @@ IBM = IBM[
 IBM_filtered = IBM[(IBM['actual_hour'].isin([0, 6, 12, 18])) | (IBM['version'] == 0)]
 IBM_filtered = IBM_filtered.drop(IBM_filtered[(IBM_filtered['forecast_date'] == '2023-10-29') & (IBM_filtered['forecast_hour'] == 2)].index)
 
+#calculate_version:
 time_difference_hours = (IBM_filtered['forecast_date'] - IBM_filtered['actual_date']).dt.total_seconds() / 3600
 calculated_value = (((time_difference_hours + IBM_filtered['forecast_hour'] - IBM_filtered['actual_hour']) / 6)).astype(int)
 IBM_filtered['version_new'] = calculated_value
@@ -47,6 +48,7 @@ IBM_filtered['version_new'] = np.where(
 
 IBM_sorted = IBM_filtered.sort_values(by=['forecast_date', 'forecast_hour',  'version_new'], ascending=[True, True, True])
 
+#add rain actual data from OMSZ:
 OMSZ = OMSZ[['version', 'forecast_date', 'forecast_hour', 'rain_mm']][OMSZ.version == 't-0']
 OMSZ['version_new'] = 0
 OMSZ.rename(columns={'rain_mm': 'rain_mm_v2'}, inplace=True)
@@ -62,6 +64,7 @@ IBM_merged0['rain_mm'] = IBM_merged0['precip1Hour'].fillna(0) + IBM_merged0['rai
 
 IBM_merged = IBM_merged0[['forecast_date', 'forecast_hour', 'version_new', 'temp', 'rain_mm', 'wind_speed_mph', 'condition']]
 
+#calculate actual vs forecast:
 def calculate_temp_diff(group):
     # Calculate absolute temperature difference with version 0
     group['temp_diff'] = group['temp'] - group.loc[group['version_new'] == 0, 'temp'].iloc[0]
