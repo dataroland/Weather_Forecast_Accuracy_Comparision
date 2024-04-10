@@ -11,8 +11,8 @@ Data has been gathered from three weather forecast providers: OMSZ, Weather Unde
 A significant challenge was to identify and compute comparable metrics that are available from all forecast providers. The key indicators established are: 
 - High Temperature Accuracy: Percentage of daily maximum temperature forecasts within a 3°C range, averaged over 1 to 6 days.
 - Low Temperature Accuracy: Percentage of daily minimum temperature forecasts within a 3°C range, averaged over 1 to 6 days.
-- Rain Accuracy: Percentage of correctly forecasted days with more than zero mm of rain, averaged over 1 to 6 days.
-- No Rain Accuracy: Percentage of correctly forecasted days with zero mm of rain, averaged over 1 to 6 days.
+- Rain Accuracy: Percentage of correctly forecasted days with more than zero mm of rain, averaged over 1 to 6 days. (Final calculation in Power BI report.)
+- No Rain Accuracy: Percentage of correctly forecasted days with zero mm of rain, averaged over 1 to 6 days. (Final calculation in Power BI report.)
 
 These indicators were derived through a multi-step process:
 - Calculating different forecast versions and converting them into daily data.
