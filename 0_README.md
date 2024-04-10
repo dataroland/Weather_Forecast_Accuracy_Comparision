@@ -16,10 +16,12 @@ Project Focus: Budapest Weather (between 15 June 2023 and 31 March 2024). I have
 
 My goal is to assess the accuracy of 1-6 days forecasts from each platform.
 
+
+
+
 As for technical details please check the following sites:
  - Data gathering, cleaning and processing
  - Power BI presentation
- - Predictive models
  - Short Description of the Website - https://dataroland.com
 
 Please also visit my website (https://dataroland.com) to check the result of my project.
@@ -40,4 +42,6 @@ Please also visit my website (https://dataroland.com) to check the result of my 
 - <b>POWER BI Desktop</b>
 
 <h2>Summary of the project:</h2>
+
+![Weather_ppt](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/f2d89945-e178-483d-8789-1b828b6bee78)
 
