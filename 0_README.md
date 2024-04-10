@@ -15,3 +15,29 @@ Project Focus: Budapest Weather (between 15 June 2023 and 31 March 2024). I have
 ## Analyzing Accuracy
 
 My goal is to assess the accuracy of 1-6 days forecasts from each platform.
+
+As for technical details please check the following sites:
+ - Data gathering, cleaning and processing
+ - Power BI presentation
+ - Predictive models
+ - Short Description of the Website - https://dataroland.com
+
+Please also visit my website (https://dataroland.com) to check the result of my project.
+<br />
+
+
+<h2>Languages Used</h2>
+
+- <b>Python, Selenium, BeautifulSoup, Pandas</b>
+- <b>Bash</b>
+- <b>PostgreSQL</b>
+
+
+<h2>Environments Used </h2>
+
+- <b>Remote data server (Ubuntu), mcedit, crontab</b>
+- <b>Jupyter Notebooks, SQLWorkbench</b>
+- <b>POWER BI Desktop</b>
+
+<h2>Summary of the project:</h2>
+
