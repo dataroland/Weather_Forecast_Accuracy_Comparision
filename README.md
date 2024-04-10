@@ -1,27 +1,17 @@
-# Weather Forecast Accuracy Comparison
+# Weather Forecast Comparison Project
 
 Embark on a meteorological journey with my Weather Forecast Comparison project, where I scrutinize the accuracy of three prominent weather forecasting websites for Budapest, Hungary.
 
-1. **HungaroMet – Hungarian Meteorological Service**
-   - [HungaroMet Website](https://met.hu)
-   - A government-operated site providing the official weather forecast for Hungary.
+## Weather Forecast Websites
 
-2. **Időkép**
-   - [Időkép Website](https://www.idokep.hu/)
-   - Another local and popular weather forecaster.
-
-3. **Weather Underground**
-   - [Weather Underground Website](https://www.wunderground.com/)
-   - An international weather forecaster renowned for its global accuracy.
+- **HungaroMet (previously OMSZ)**: [Hungarian Meteorological Service](https://met.hu) - a government-operated site providing official weather forecasts for Hungary.
+- **Időkép**: [Időkép](https://www.idokep.hu/) - another local and popular weather forecaster (TOP10 most visited site in Hungary).
+- **Weather Underground**: [Weather Underground](https://www.wunderground.com/) - an international weather forecaster renowned for its global accuracy.
 
 ## Project Focus
 
-Budapest Weather. I have collected comprehensive data on temperature, wind patterns, precipitation, and more from each site for both forecasted and actual weather conditions.
+Project Focus: Budapest Weather (between 15 June 2023 and 31 March 2024). I have collected comprehensive data on temperature (high and low) and precipitation.
 
 ## Analyzing Accuracy
 
-My goal is to assess the accuracy of short-term, mid-term, and long-term forecasts from each platform.
-
-## Stay Tuned
-
-The project is currently in progress, and results will be unveiled soon. I aim to provide you with valuable insights into which weather forecasting site excels in delivering the most accurate predictions for Budapest.
+My goal is to assess the accuracy of 1-6 days forecasts from each platform.
