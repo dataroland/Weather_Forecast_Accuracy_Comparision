@@ -2,7 +2,7 @@
 
 ## 1) Data Collection:
 
-I have collected data from 3 different weather forecast providers (OMSZ, Weather Underground and Idokep). The type of data, the frequency of the downloads and other details can be found in the picture below: 
+I have compiled data from three distinct weather forecast providers: OMSZ, Weather Underground, and Idokep. Below, you will find detailed information about the types of data collected, the frequency of the data downloads, and other pertinent details: 
 
 ![Weather_summary](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/22e4f32a-4728-446a-95a8-d640374887f2)
 
