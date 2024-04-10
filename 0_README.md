@@ -43,5 +43,6 @@ Please also visit my website (https://dataroland.com) to check the result of my 
 
 <h2>Summary of the project:</h2>
 
-![Weather_ppt](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/f2d89945-e178-483d-8789-1b828b6bee78)
+![Weather_ppt](https://github.com/dataroland/Weather_Forecast_Accuracy_Comparision/assets/145594847/a747e1e6-684c-461b-a628-9af61d5435a1)
+
 
