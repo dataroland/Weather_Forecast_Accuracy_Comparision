@@ -4,7 +4,7 @@ For visualizing train delay data, I opted for [Microsoft Power BI](https://power
 
 ## 1) Data Discovery / Data Shaping / Data Modeling:
 
-I integrated Power BI with my PostgreSQL database on my Ubuntu server importing SQL tables. Daily, the SQL table receives new data, representing the previous day's weather information, automatically reflecting in the reports after refreshing. Several transformations were applied to the data:
+I integrated Power BI with my PostgreSQL database on my Ubuntu server importing SQL tables and direct queries. Daily, the SQL table receives new data, representing the previous day's weather information, automatically reflecting in the reports after refreshing. Several transformations were applied to the data:
 
 - Changing column types
 - Adding columns like grouping forecast errors
@@ -19,8 +19,9 @@ Diverse charts were crafted to represent weather forecast accuracy data, includi
 - High and Low Temperature forecast accuracy in percentage and in Celsius
 - 15+ days High Temperature forecast accuracy vs weather historical data
 - Forecast error chart for High Temperature forecasts
+- 5+ Celsius Change of High Temperature Forecast Accuracy 
 - Rain and No Rain forecast accuracy in percentage
-- 
+
 ## 3) Data Sharing:
 
 This report serves a personal purpose, designed exclusively for my use without publication or sharing with others.
