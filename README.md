@@ -10,7 +10,7 @@ Embark on a meteorological journey with my Weather Forecast Accuracy project, wh
 
 ## Project Focus
 
-Project Focus: Budapest Weather (between 15 June 2023 and 31 March 2024). I have collected comprehensive data on temperature (high and low) and precipitation.
+Project Focus: Budapest Weather (between 15 June 2023 and 31 March 2024). I have collected comprehensive data on temperature (high and low) and precipitation. For the methodology underlying this comparison, I drew inspiration from the approaches outlined on [Forecastadvisor](https://www.forecastadvisor.com/).
 
 ## Analyzing Accuracy
 
